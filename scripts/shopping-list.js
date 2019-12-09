@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import store from './store.js';
 import item from './item.js';
 
@@ -43,7 +44,14 @@ const render = function () {
 };
 
 const addItemToShoppingList = function (itemName) {
-  store.items.push({ id: cuid(), name: itemName, checked: false });
+  try{
+    item.validateName(itemName);
+    let newItem = item.create(itemName);
+    store.items.push(newItem);
+    render();
+  } catch(err){
+    console.log(`Cannot add item: ${err}`);
+  }
 };
 
 const handleNewItemSubmit = function () {
