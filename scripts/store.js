@@ -4,7 +4,7 @@ let items= [];
 let hideCheckedItems = false;
 
 function findById(id){
-  return store.items.find(item => item.id===id);
+  return this.items.find(item => item.id===id);
 
 }
 
